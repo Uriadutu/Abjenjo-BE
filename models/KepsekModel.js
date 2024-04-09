@@ -14,6 +14,10 @@ const Kepsek = db.define(
         notEmpty: true,
       },
     },
+    No_daftar : {
+      type : DataTypes.INTEGER,
+      defaultValue :"001",
+    },
     NIP: {
       type: DataTypes.INTEGER,
       allowNull: false,
