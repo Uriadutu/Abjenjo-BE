@@ -107,3 +107,30 @@ export const createGuru = async (req, res) => {
   }
 
 };
+
+
+
+export const deleteGuru = async (req, res) => {
+  try {
+    const guru = await Guru.findOne({
+      where: {
+        id_guru: req.params.id,
+      },
+    });
+
+    if (!guru) {
+      return res.status(404).json({ msg: "Data tidak ditemukan" });
+    }
+    // Hapus data atlet
+    await guru.destroy();
+
+    // Hapus gambar terkait
+    const filepath = `./public/fotoGuru/${guru.file}`;
+    fs.unlinkSync(filepath);
+
+    res.status(200).json({ msg: "Data dan gambar terhapus" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ msg: "Terjadi kesalahan dalam menghapus data" });
+  }
+};
