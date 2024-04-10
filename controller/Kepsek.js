@@ -84,7 +84,7 @@ export const createKepsek = async (req, res) => {
             alamat: alamat,
             jenis_kelamin: jenis_kelamin,
             url: url,
-            role: "Guru",
+            role: "Kepsek",
             file: uniqueFileName,
             username: NIP.slice(-3) + noDaftar,
             password: hashPassword,
