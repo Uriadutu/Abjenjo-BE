@@ -8,7 +8,7 @@ import SequelizeStore from "connect-session-sequelize";
 import Gururoute from "./routes/Gururoute.js"
 import KepsekRoute from "./routes/Kepsekroute.js"
 import AdminRoute from "./routes/Adminroute.js";
-
+import AuthRoute from "./routes/Authroute.js"
 dotenv.config();
 
 const app = express();
@@ -19,9 +19,9 @@ const store = new sessionStore({
   db: db,
 });
 
-(async()=>{
-    await db.sync();
-})();
+// (async()=>{
+//     await db.sync();
+// })();
 
 // store.sync();
 
@@ -51,6 +51,7 @@ app.use(express.json());
 app.use(Gururoute);
 app.use(KepsekRoute);
 app.use(AdminRoute);
+app.use(AuthRoute);
 
 app.listen(process.env.APP_PORT, () => {
   console.log("Server Running");
