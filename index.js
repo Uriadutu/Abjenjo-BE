@@ -10,6 +10,7 @@ import KepsekRoute from "./routes/Kepsekroute.js"
 import AdminRoute from "./routes/Adminroute.js";
 import AuthRoute from "./routes/Authroute.js"
 import PengajuanRoute from "./routes/PengajuanRoute.js"
+import KehadiranRoute from "./routes/KehadiranRoute.js"
 dotenv.config();
 
 const app = express();
@@ -54,6 +55,7 @@ app.use(KepsekRoute);
 app.use(AdminRoute);
 app.use(AuthRoute);
 app.use(PengajuanRoute);
+app.use(KehadiranRoute)
 
 app.listen(process.env.APP_PORT, () => {
   console.log("Server Running");

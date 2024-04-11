@@ -1,16 +1,15 @@
 import { Sequelize } from "sequelize";
-import db from "../config/Database.s";
-import Pengajuan from "./PengajuanModel";
+import db from "../config/Database.js";
+import Guru from "./GuruModel.js";
 
 const { DataTypes } = Sequelize;
 
-const Kehadiran = db.denife(
+const Kehadiran = db.define(
   "Kehadiran",
   {
-    id_kepsek: {
-      type: DataTypes.INTEGER,
+    id_kehadiran: {
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -36,4 +35,4 @@ Guru.hasMany(Kehadiran);
 Kehadiran.belongsTo(Guru, { foreignKey: "id_guru" });
 
 
-export default Pengajuan
+export default Kehadiran
