@@ -1,4 +1,7 @@
 import Kehadiran from "../models/KehadiranModel.js";
+import Guru from "../models/GuruModel.js"
+import Kepsek from "../models/KepsekModel.js"
+
 
 function parseAndFormatDateString(dateString) {
   const parsedDate = new Date(dateString);
@@ -18,6 +21,13 @@ export const getKehadiranGuru = async (req, res) => {
       where: {
         id_guru: req.params.id,
       },
+      include : [
+        {
+            model : Guru,
+        }, {
+            model : Kepsek,
+        }
+      ]
     });
     res.status(200).json(response);
   } catch (error) {
@@ -30,12 +40,11 @@ export const getDataHadirBaru = async (req, res) => {
     const latestKehadiran = await Kehadiran.findOne({
       where: {
         id_guru: req.params.id,
-        keluar: "-", // Data keluar masih "-"
+        keluar: "-", 
       },
       order: [["createdAt", "DESC"]],
     });
 
-    // Jika data keluar sudah bernilai angka, maka tidak ada data yang ditemukan
     if (!latestKehadiran) {
       return res.status(404).json({ msg: "Data tidak ditemukan" });
     }
